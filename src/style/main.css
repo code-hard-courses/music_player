@@ -1,0 +1,27 @@
+body {
+    /* background: #234124; rgba(0,0,0,.87)*/
+    background: slategray;
+}
+
+.left-bar {
+    position: relative;
+    width: 10%;
+    border: solid green;
+    height: 740px;
+}
+
+.player {
+    width: 500px;
+    border: solid salmon;
+}
+
+.tabs {
+    padding-left: 76%;
+}
+
+
+/* .footer {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+} */

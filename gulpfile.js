@@ -46,7 +46,7 @@ var config = {
     },
     tunnel: false,
     host: 'localhost',
-    port: 3000, //9000
+    port: 9000, //9000
     logPrefix: "Front-end malv"
 };
 
