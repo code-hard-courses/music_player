@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
-    //babel = require('gulp-babel'),
+    babel = require('gulp-babel'),
     browserify = require('gulp-browserify'),
     browserSync = require("browser-sync"),
     reload = browserSync.reload;
@@ -18,21 +18,21 @@ var gulp = require('gulp'),
 var path = {
     build: { //Тут мы укажем куда складывать готовые после сборки файлы
         html: 'build/',
-        js: 'build/script/',
+        js: 'build/scripts/',
         css: 'build/style/',
         img: 'build/img/',
         fonts: 'build/fonts/'
     },
     src: { //Пути откуда брать исходники
         html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
-        js: 'src/script/app.js', //В скриптах нам понадобятся только app файлы
+        js: 'src/scripts/app.js', //В скриптах нам понадобятся только app файлы
         style: 'src/style/main.css',
         img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
         fonts: 'src/fonts/**/*.*'
     },
     watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
         html: 'src/**/*.html',
-        js: 'src/script/**/*.js',
+        js: 'src/scripts/**/*.js',
         style: 'src/style/**/*.css',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
@@ -61,6 +61,17 @@ gulp.task('js:build', function() {
     gulp.src(path.src.js) //Найдем наш main файл
         .pipe(rigger()) //Прогоним через rigger
         .pipe(sourcemaps.init()) //Инициализируем sourcemap
+        .pipe(
+            browserify({
+              insertGlobals: true,
+              debug: !gulp.env.production
+            })
+          )
+          .pipe(
+            babel({
+              presets: ["es2015"]
+            })
+          )
         // .pipe(uglify()) //Сожмем наш js
         .pipe(sourcemaps.write()) //Пропишем карты
         .pipe(gulp.dest(path.build.js)) //Выплюнем готовый файл в build

@@ -1,7 +1,7 @@
-import Router from './utils/Router';
+import Router from './utils/Router.js';
 
-import { author } from './routes/author';
-import { help } from './routes/help';
+import { author } from './routes/author.js';
+import { help } from './routes/help.js';
 
 
 let routes = [author, help]; 

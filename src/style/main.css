@@ -17,7 +17,7 @@ body {
 } */
 
 .tabs {
-    padding-left: 70%;
+    justify-content: flex-end;
 }
 
 .footercli {
