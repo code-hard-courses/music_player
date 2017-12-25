@@ -3,7 +3,8 @@ body {
     background: slategray;
 }
 
-.left-bar {
+
+/* .left-bar {
     position: relative;
     width: 10%;
     border: solid green;
@@ -13,15 +14,12 @@ body {
 .player {
     width: 500px;
     border: solid salmon;
-}
+} */
 
 .tabs {
-    padding-left: 76%;
+    padding-left: 70%;
 }
 
-
-/* .footer {
-    position: absolute;
-    bottom: 0%;
-    width: 100%;
-} */
+.footercli {
+    height: 2%;
+}

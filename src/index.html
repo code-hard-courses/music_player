@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./style/main.css">
 
 
-
+    <script type="text/javascript" src="./scripts/app.js"></script>
 </head>
 
 <body>
@@ -35,19 +35,24 @@
 
             </div>
             <div class="mdl-layout__tab-bar mdl-js-ripple-effect tabs">
-                <a href="#scroll-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
-                <a href="#scroll-tab-2" class="mdl-layout__tab">Tab 2</a>
-                <a href="#scroll-tab-3" class="mdl-layout__tab">Tab 3</a>
-                <a href="#scroll-tab-4" class="mdl-layout__tab">Tab 4</a>
+                <a href="#scroll-tab-1" class="mdl-layout__tab is-active">Main Choices</a>
+                <a href="#scroll-tab-2" class="mdl-layout__tab">Songs</a>
+                <a href="#scroll-tab-3" class="mdl-layout__tab">Albums</a>
+                <a href="#scroll-tab-4" class="mdl-layout__tab">Artists</a>
             </div>
         </header>
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">Player Mila</span>
+            <div class="point">
+                <h1>Hi</h1>
+            </div>
         </div>
+
         <main class="mdl-layout__content">
+            <div class="mainContent"></div>
             <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
-                <div class="page-content">
-                    <!-- Your content goes here -->
+                <div class="page-content start">
+                    <!-- Your content goes here -->Tab1
 
                 </div>
             </section>
@@ -68,24 +73,21 @@
             </section>
         </main>
 
-        <footer class="mdl-mini-footer footer">
+        <footer class="mdl-mini-footer footercli">
             <div class="mdl-mini-footer__left-section">
                 <div class="mdl-logo">
                     More Information :
                 </div>
                 <ul class="mdl-mini-footer__link-list">
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">Privacy and Terms</a></li>
-                    <li><a href="#">User Agreement</a></li>
+                    <li><a href="#help">Help</a></li>
+                    <li><a href="#author">Author</a></li>
+                    <li><a href="#user">User Aggreemets</a></li>
                 </ul>
             </div>
             <div class="mdl-mini-footer__right-section">
 
 
-                <div id="tt2" class="icon material-icons">print</div>
-                <div class="mdl-tooltip mdl-tooltip--large" for="tt2">
-                    Print
-                </div>
+
 
 
                 <button class="mdl-mini-footer__social-btn"></button>
@@ -94,11 +96,16 @@
             </div>
         </footer>
     </div>
-
-
     <!-- <script src="./MDL/material.min.js"></script> -->
+
+
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js">
     </script>
+
+
+
+
+
 
 </body>
 
