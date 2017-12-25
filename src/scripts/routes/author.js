@@ -3,15 +3,20 @@ const author = {
     match: "author",
     onBeforeEnter: () => {},
     onEnter: () => {
-        let mainContent = document.querySelector(".point");
+        let mainContent = document.querySelector(".mainContent");
         mainContent.innerHTML = `
-        <h1>Hi!aaaaa</h1>
-        <h2>Some rules and main task:</h2>
-        <ul>
-        <li>The main task is to avoid enemies.</li>
-        <li>Stay alive as long as possible.</li>
-        </ul>
-        <h2>Good luck Santa!</h2>
+        <div class="authorIMG">
+        <div class="demo-card-image mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title mdl-card--expand"></div>
+                <div class="mdl-card__actions">
+                <span class="demo-card-image__filename">Alex Malv</span>      
+            </div>
+        </div>
+        </div>
+        <div class ="authorText">
+        Music is an art form and cultural activity whose medium is sound organized in time. <br>
+        I hope this player will only help you to enjoy the art.
+        </div>
       `;
     },
     onLeave: () => {}

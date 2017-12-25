@@ -3,7 +3,7 @@ const help = { //main help
     match: "help",
     onBeforeEnter: () => {},
     onEnter: () => {
-        let mainContent = document.querySelector(".point");
+        let mainContent = document.querySelector(".mainContent");
         mainContent.innerHTML = `
         <h1>Hi!</h1>
         <h2>Some rules and main task:</h2>
