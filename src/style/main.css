@@ -1,6 +1,31 @@
 body {
-    /* background: #234124; rgba(0,0,0,.87)*/
-    background: slategray;
+    /* background: #234124; rgba(0,0,0,.87) rgb(44, 42, 42)*/
+    background: slategrey;
+    background: linear-gradient(to bottom, #fefcea, #424242);
+}
+
+.panelLeft {
+    background: linear-gradient(to bottom, #fefcea, grey);
+    border: 0;
+}
+
+.point {
+    margin: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.divRadio {
+    display: flex;
+    flex-direction: column;
+}
+
+.afterPoint {
+    font-style: oblique;
+    margin: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 
