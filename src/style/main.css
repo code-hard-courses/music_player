@@ -86,3 +86,8 @@ body {
     font-size: 12px;
     font-weight: 500;
 }
+
+.social {
+    display: flex;
+    justify-content: flex-end;
+}
