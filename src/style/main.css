@@ -91,3 +91,23 @@ body {
     display: flex;
     justify-content: flex-end;
 }
+
+.mdl-mini-footer__social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.twitter {
+    background: url(../img/tw.png);
+}
+
+.vk {
+    background: url(../img/vk.png);
+}
+
+.github {
+    background: url(../img/git.png);
+}
