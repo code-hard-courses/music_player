@@ -2,7 +2,7 @@
 
 ## How to setup
 
-```
+```bash
 # clone repo
 git clone https://github.com/OzzyMalv/music_player.git
 
