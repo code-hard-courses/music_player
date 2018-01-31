@@ -92,12 +92,32 @@ body {
     justify-content: flex-end;
 }
 
+.mdl-mini-footer__middle-section {
+    display: flex;
+    justify-content: center;
+}
+
+.play,
+.pause,
+.speaker {
+    font-size: 40px;
+    line-break: auto;
+    line-height: 20px;
+    cursor: pointer;
+}
+
 .mdl-mini-footer__social-btn {
     width: 40px;
     height: 40px;
     border-radius: 20px;
     margin-right: 10px;
     cursor: pointer;
+}
+
+.helpme {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .twitter {
