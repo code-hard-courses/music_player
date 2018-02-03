@@ -1,7 +1,7 @@
-const API_KEY_LASTFM = '52bc3b6e84807de0f34482110ffa0834'
+
 const API_KEY_FMA = "29UT3KA87Q3MV8Q1";
 
-class ApiConnect {
+class Yandex {
     constructor(){
         //52bc3b6e84807de0f34482110ffa0834
         //http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=YOUR_API_KEY&user=joanofarctan&format=json
@@ -10,7 +10,6 @@ class ApiConnect {
     init() {
         this.controls();
         this.handlerEvents();
-        this.connectFMA();
     }
 
     handlerEvents(){
@@ -20,30 +19,6 @@ class ApiConnect {
         
 
     }
-    connectFMA(){
-        fetch(`https://freemusicarchive.org/api/get/curators.json?api_key=${API_KEY_FMA}`)
-        .then((response) => response.json())
-        .then((data) =>{
-            let main = document.querySelector(".mainContent");
-            // main.innerHTML = `${data.dataset[0]}`;
-            console.log(data);
-            console.log(data.dataset[0]);
-
-        })
-        fetch(`https://freemusicarchive.org/recent.json`)
-        .then(response => response.json())
-        .then(dataMM => {
-            
-            console.log(dataMM);
-            console.log(dataMM.aTracks[4].track_file);
-            // document.querySelector('.mainContent').innerHTML += `
-            //     <audio controls>
-            //         <source src="${dataMM.aTracks[18].track_listen_url}" type="audio/mpeg">
-            //     </audio>
-            // `;
-        })
-    }
-
 
     controls(){
         var dom = {
@@ -90,7 +65,7 @@ class ApiConnect {
     }
 }
 
-let connect = new ApiConnect();
+let connect = new Yandex();
 connect.init();
 
-export { ApiConnect }
+export { yandex }
