@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./style/main.css">
 
+
     <!-- yandex -->
 
 </head>
@@ -47,19 +48,19 @@
                 <h2>API : </h2>
                 <div class="divRadio">
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
-                    <span class="mdl-radio__label">FMA</span>
-                  </label>
+                        <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
+                        <span class="mdl-radio__label">FMA</span>
+                    </label>
                     <br>
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                    <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
-                    <span class="mdl-radio__label">Yandex</span>
-                  </label>
+                        <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
+                        <span class="mdl-radio__label">Yandex</span>
+                    </label>
                     <br>
                     <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                    <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3">
-                    <span class="mdl-radio__label">Rovi</span>
-                  </label>
+                        <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3">
+                        <span class="mdl-radio__label">Rovi</span>
+                    </label>
 
                 </div>
             </div>
@@ -102,9 +103,15 @@
                     More Information :
                 </div>
                 <ul class="mdl-mini-footer__link-list">
-                    <li><a href="#help">Help</a></li>
-                    <li><a href="#author">Author</a></li>
-                    <li><a href="#user">User Aggreemets</a></li>
+                    <li>
+                        <a href="#help">Help</a>
+                    </li>
+                    <li>
+                        <a href="#author">Author</a>
+                    </li>
+                    <li>
+                        <a href="#user">User Aggreemets</a>
+                    </li>
                 </ul>
             </div>
 
@@ -113,12 +120,19 @@
                 <!-- player -->
                 <div class="material-icons play" onselectstart="return false">play_circle_filled</div>
                 <!-- <div class="material-icons pause">pause_circle_filled</div> -->
-                <div class="overlay"></div>
-                <div style="width:300px;"> <input class="mdl-slider mdl-js-slider musicplay" type="range" min="0" max="100" value="20" tabindex="0"></div>
+
+                <!-- <div style="width:300px;">
+                    <input class="mdl-slider mdl-js-slider musicplay" type="range" min="0" max="100" value="20" tabindex="0">
+                </div> -->
+                <div class="progress">
+                    <div class="progress_loaded"></div>
+                    <div class="progress_current"></div>
+                </div>
                 <div class="material-icons speaker">speaker</div>
                 <input class="mdl-slider mdl-js-slider volume" type="range" min="0" max="100" value="20" tabindex="0">
                 <div class="valueVolume">20</div>
 
+                <div class="overlay"></div>
             </div>
 
             <div class="mdl-mini-footer__right-section">
@@ -142,6 +156,7 @@
     <script src="https://music.yandex.ru/api/audio/dist/index.min.js" type="javascript"></script>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js">
     </script>
+    <script src="https://music.yandex.ru/api/audio/dist/index.min.js"></script>
     <script src="./scripts/app.js"></script>
 </body>
 
