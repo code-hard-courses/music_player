@@ -107,8 +107,10 @@ body {
 
 .progress {
   border: solid teal;
-  width: 300px;
+  width: 100%;
   position: relative;
+
+  height: 100%;
 }
 .progress_loaded {
   position: absolute;
@@ -125,7 +127,10 @@ body {
   height: 100%;
   /* border: solid green; */
 }
-
+.duration{
+  margin-left: 3%;
+  margin-right: 8%
+}
 .overlay1 {
   display: block;
   position: absolute;

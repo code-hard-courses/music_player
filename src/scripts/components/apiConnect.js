@@ -11,7 +11,7 @@ class ApiConnect {
     this.controls();
     this.connectFMA();
   }
-  dom_elements() {}
+  dom_elements() { }
   handlerEvents() {
     //  var AudioPlayer = ya.music.Audio;
   }
@@ -29,19 +29,21 @@ class ApiConnect {
     fetch(`https://freemusicarchive.org/recent.json`)
       .then(response => response.json())
       .then(dataMM => {
-        console.log(dataMM);
-        console.log(dataMM.aTracks[4].track_file);
+        console.log(dataMM)
         // document.querySelector('.mainContent').innerHTML += `
         //     <audio controls>
         //         <source src="${dataMM.aTracks[18].track_listen_url}" type="audio/mpeg">
         //     </audio>
         // `;
+        console.log(dataMM.aTracks[10].track_duration);  //string .aTracks[10].track_duration
       });
   }
 
   controls() {
     let trackUrls = [
-      "https://freemusicarchive.org/music/listen/bfdef2117a5762d4b9c8c2980e73c246dcb6c7d7"
+      // "https://freemusicarchive.org/music/listen/d4d371c78cb658761c3c8a409a56e5f65957fbb4",
+      //"https://freemusicarchive.org/music/listen/bfdef2117a5762d4b9c8c2980e73c246dcb6c7d7"
+      "https://freemusicarchive.org/music/listen/df96eb6ea8c16fea1c748e9ea669a06f7cff8918" //10 track
     ];
     let trackIndex = 0;
 
@@ -51,11 +53,13 @@ class ApiConnect {
       play: document.querySelector(".play"),
       pause: document.querySelector(".pause"),
 
+
       progress: {
         bar: document.querySelector(".progress"),
         loaded: document.querySelector(".progress_loaded"),
         current: document.querySelector(".progress_current")
       },
+      duration: document.querySelector(".duration"),
 
       volume: {
         bar: document.querySelector(".volume"),
@@ -69,7 +73,7 @@ class ApiConnect {
 
     let audioPlayer = new AudioPlayer(null, dom.overlay);
 
-    var startPlay = function() {
+    var startPlay = function () {
       audioPlayer.play(trackUrls[trackIndex]);
     };
 
@@ -82,26 +86,48 @@ class ApiConnect {
     });
 
     audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, timings => {
-      dom.progress.loaded.style.width =
-        (timings.loaded / timings.duration * 100).toFixed(2) + "%";
-      dom.progress.current.style.width =
-        (timings.position / timings.duration * 100).toFixed(2) + "%";
+      console.log(timings);
+      // let trackDuration = "3:30";//dataMM.aTracks[10].track_duration; // sec 3:30
+      // let maxDurationArr = trackDuration.split(":"); //[3,30]
+      // let maxDurationSec = (maxDurationArr[0] * 60) + +maxDurationArr[1]; //переаод в секунды 210sec (number)
+      // //let currentPlayBar = maxDuration / (currentDurraiton * 100); //120 / (12 * 100)   10%
+      // dom.progress.loaded.style.width =
+      //   (timings.loaded / duration * 100).toFixed(2) + "px";
+      // dom.progress.current.style.width = duration + "%"; 
+      dom.progress.loaded.style.width = timings.loaded + "%";
     });
 
-    // let updateVolume = function(volume) {
-    //   dom.volume.value.style.height = (volume * 100).toFixed(2) + "%";
-    // };
-    // audioPlayer.on(ya.music.Audio.EVENT_VOLUME, updateVolume);
-    dom.play.addEventListener("click", function() {
-      var state = audioPlayer.getState();
+    dom.play.addEventListener("click", function () {
+
+      console.log("tutPlay");
+      let trackDuration = "3:30";//dataMM.aTracks[10].track_duration; // sec 3:30
+      let maxDurationArr = trackDuration.split(":"); //[3,30]
+      let maxDurationSec = (maxDurationArr[0] * 60) + +maxDurationArr[1]; //перевод в секунды 210sec (number)
+
+      function printNumbersTimeout(maxDurationSec) {
+        var i = 1;
+        var timerId = setTimeout(function go() {
+          console.log(i);
+          if (i < maxDurationSec) setTimeout(go, 1004);
+          i++;
+          dom.progress.current.style.width = ((i * 100) / maxDurationSec).toFixed() + "%"; //пропорция
+        }, 1004);
+      }
+
+      // вызов
+      printNumbersTimeout(maxDurationSec);
+      //
+      let state = audioPlayer.getState();
 
       switch (state) {
         case ya.music.Audio.STATE_PLAYING:
           audioPlayer.pause();
+          console.log("pause");
           break;
 
         case ya.music.Audio.STATE_PAUSED:
           audioPlayer.resume();
+          console.log("resume");
           break;
 
         default:
@@ -110,7 +136,7 @@ class ApiConnect {
       }
     });
 
-    audioPlayer.on(ya.music.Audio.EVENT_ENDED, function() {
+    audioPlayer.on(ya.music.Audio.EVENT_ENDED, function () {
       trackIndex++;
 
       if (trackIndex < trackUrls.length) {
@@ -126,7 +152,7 @@ class ApiConnect {
     // });
 
     // need some think about it:
-    var offsetLeft = function(node) {
+    var offsetLeft = function (node) {
       var offset = node.offsetLeft;
       if (node.offsetParent) {
         offset += offsetLeft(node.offsetParent);
@@ -134,7 +160,7 @@ class ApiConnect {
       return offset;
     };
 
-    var offsetTop = function(node) {
+    var offsetTop = function (node) {
       var offset = node.offsetTop;
       if (node.offsetParent) {
         offset += offsetTop(node.offsetParent);
@@ -142,7 +168,7 @@ class ApiConnect {
       return offset;
     };
 
-    dom.progress.bar.addEventListener("click", function(evt) {
+    dom.progress.bar.addEventListener("click", function (evt) {
       var fullWidth = dom.progress.bar.offsetWidth;
       var offset = offsetLeft(dom.progress.bar);
 
@@ -156,10 +182,14 @@ class ApiConnect {
     });
 
     dom.volume.bar.addEventListener("change", () => {
-      let value = dom.volume.bar.value;
+      let volume = dom.volume.bar.value;
 
-      dom.volume.valueVolume.innerHTML = `<span>${value}</span>`;
+      dom.volume.valueVolume.innerHTML = `<span>${volume}</span>`;
+      let volumeSet = volume / 100; // 0 - mute 1 - bass
+      audioPlayer.setVolume(volumeSet);
     });
+
+
   }
 }
 
