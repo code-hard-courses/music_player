@@ -1,9 +1,9 @@
 const help = { //main help
     name: "help",
     match: "help",
-    onBeforeEnter: () => {},
+    onBeforeEnter: () => { },
     onEnter: () => {
-        let mainContent = document.querySelector(".mainContent");
+        let mainContent = document.querySelector(".page-content");
         mainContent.innerHTML = `
         <div class="helpme">
         <div>
@@ -15,7 +15,7 @@ const help = { //main help
         </div>
       `;
     },
-    onLeave: () => {}
+    onLeave: () => { }
 };
 
 export { help };

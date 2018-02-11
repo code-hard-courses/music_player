@@ -1,6 +1,6 @@
-const author = {
-    name: "author",
-    match: "author",
+const main = {
+    name: "scroll-tab-2",
+    match: "scroll-tab-2",
     onBeforeEnter: () => { },
     onEnter: () => {
         let mainContent = document.querySelector(".page-content");
@@ -22,4 +22,4 @@ const author = {
     onLeave: () => { }
 };
 
-export { author };
+export { main };

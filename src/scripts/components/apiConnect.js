@@ -3,8 +3,7 @@ const API_KEY_FMA = "29UT3KA87Q3MV8Q1";
 
 class ApiConnect {
   constructor() {
-    //52bc3b6e84807de0f34482110ffa0834
-    //http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key=YOUR_API_KEY&user=joanofarctan&format=json
+    // this.trackUrls = [];
   }
 
   init() {
@@ -24,27 +23,33 @@ class ApiConnect {
         let main = document.querySelector(".mainContent");
         // main.innerHTML = `${data.dataset[0]}`;
 
-        console.log(data.dataset[0]);
+        //console.log(data.dataset[0]);
       });
     fetch(`https://freemusicarchive.org/recent.json`)
       .then(response => response.json())
       .then(dataMM => {
-        console.log(dataMM)
         // document.querySelector('.mainContent').innerHTML += `
         //     <audio controls>
         //         <source src="${dataMM.aTracks[18].track_listen_url}" type="audio/mpeg">
         //     </audio>
         // `;
-        console.log(dataMM.aTracks[10].track_duration);  //string .aTracks[10].track_duration
+        console.log(dataMM.aTracks[10].track_duration),  //string .aTracks[10].track_duration
+          this.controls(dataMM.aTracks[10].track_listen_url);
       });
   }
 
-  controls() {
+  controls(dataMM) {
+
+    console.log(dataMM);
+    //let listenUrl = dataMM.aTracks[10].track_listen_url;
     let trackUrls = [
-      // "https://freemusicarchive.org/music/listen/d4d371c78cb658761c3c8a409a56e5f65957fbb4",
-      //"https://freemusicarchive.org/music/listen/bfdef2117a5762d4b9c8c2980e73c246dcb6c7d7"
-      "https://freemusicarchive.org/music/listen/df96eb6ea8c16fea1c748e9ea669a06f7cff8918" //10 track
+      //"https://freemusicarchive.org/music/listen/df96eb6ea8c16fea1c748e9ea669a06f7cff8918", //10 track
+      //   listenUrl,
     ];
+    trackUrls.unshift(dataMM);
+    console.log(trackUrls);
+
+
     let trackIndex = 0;
 
     let dom = {
@@ -87,14 +92,12 @@ class ApiConnect {
 
     audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, timings => {
       console.log(timings);
-      // let trackDuration = "3:30";//dataMM.aTracks[10].track_duration; // sec 3:30
-      // let maxDurationArr = trackDuration.split(":"); //[3,30]
-      // let maxDurationSec = (maxDurationArr[0] * 60) + +maxDurationArr[1]; //переаод в секунды 210sec (number)
-      // //let currentPlayBar = maxDuration / (currentDurraiton * 100); //120 / (12 * 100)   10%
-      // dom.progress.loaded.style.width =
-      //   (timings.loaded / duration * 100).toFixed(2) + "px";
-      // dom.progress.current.style.width = duration + "%"; 
-      dom.progress.loaded.style.width = timings.loaded + "%";
+      if (timings.loaded < 100) {
+        dom.progress.loaded.style.width = timings.loaded + "%";
+      }
+      else {
+        dom.progress.loaded.style.width = "100%";
+      };
     });
 
     dom.play.addEventListener("click", function () {

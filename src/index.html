@@ -72,17 +72,41 @@
         <main class="mdl-layout__content">
 
             <div class="mainContent"></div>
-            <!-- <audio><source src="https://www.last.fm/music/Red+Hot+Chili+Peppers/_/We+Believe"></audio> -->
 
             <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
                 <div class="page-content start">
-                    <!-- Your content goes here -->
+                    <!-- Your content goes here #scroll-tab-1 -->
+
+                    <div class="listMain">
+                        <div class="demo-list-action mdl-list">
+                            <div class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                    <div class="material-icons mdl-list__item-avatar">person</div>
+                                    <span>Bryan Cranston</span>
+
+                                </span>
+                                <a class="mdl-list__item-secondary-action" href="#">
+                                    <div class="material-icons">play_circle_filled</div>
+                                </a>
+                            </div>
+                            <div class="mdl-list__item">
+                                <span class="mdl-list__item-primary-content">
+                                    <div class="material-icons mdl-list__item-avatar">person</div>
+                                    <span>Aaron Paul</span>
+                                </span>
+                                <a class="mdl-list__item-secondary-action" href="#">
+                                    <div class="material-icons">star</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </section>
             <section class="mdl-layout__tab-panel" id="scroll-tab-2">
                 <div class="page-content">
                     <!-- Your content goes here -->
+
                 </div>
             </section>
             <section class="mdl-layout__tab-panel" id="scroll-tab-3">
@@ -119,18 +143,14 @@
 
                 <!-- player -->
                 <div class="material-icons play" onselectstart="return false">play_circle_filled</div>
-                <!-- <div class="material-icons pause">pause_circle_filled</div> -->
 
-                <!-- <div style="width:300px;">
-                    <input class="mdl-slider mdl-js-slider musicplay" type="range" min="0" max="100" value="20" tabindex="0">
-                </div> -->
                 <div class="wrapperProgress" style="width: 300px">
                     <div class="progress">
                         <div class="progress_loaded"></div>
                         <div class="progress_current"></div>
                     </div>
                 </div>
-                <div class="duration">0:00</div>
+                <div class="duration">3:30</div>
                 <div class="material-icons speaker">speaker</div>
                 <input class="mdl-slider mdl-js-slider volume" type="range" min="0" max="100" value="100" tabindex="0">
                 <div class="valueVolume">100</div>

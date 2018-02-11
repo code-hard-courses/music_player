@@ -96,6 +96,23 @@ body {
   justify-content: center;
 }
 
+.listMain{
+  display: flex;
+  justify-content: center;
+  /* flex-direction: column; */
+}
+.mdl-list{
+  font-size: 20px;
+}
+.mdl-list__item{
+  padding-bottom: 5%;
+}
+
+
+.wrapperProgress{
+  widows: 300px;
+  margin-left: 10px;
+}
 .play,
 .pause,
 .speaker {
@@ -109,21 +126,23 @@ body {
   border: solid teal;
   width: 100%;
   position: relative;
-
+  border-radius: 10px;
   height: 100%;
 }
 .progress_loaded {
   position: absolute;
-  background: #fff;
+  background: rgb(122, 153, 148);
   z-index: 1;
+  border-radius: 10px;
   height: 100%;
   /* border: solid black; */
 }
 
 .progress_current {
   position: absolute;
-  background: #ff0000;
+  background: #3bdd48;
   z-index: 2;
+  border-radius: 10px;
   height: 100%;
   /* border: solid green; */
 }
