@@ -28,24 +28,23 @@ body {
   justify-content: flex-end;
 }
 
-/* .left-bar {
-    position: relative;
-    width: 10%;
-    border: solid green;
-    height: 740px;
-}
-
-.player {
-    width: 500px;
-    border: solid salmon;
-} */
-
 .mainContent {
   margin: 1%;
 }
 
+a{
+  text-decoration: none;
+  color: inherit;
+}
 .tabs {
-  justify-content: flex-end;
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
+  margin: 15px;
+  margin-left: auto;
+  margin-right: 10%;
+  
+
 }
 
 .footercli {
@@ -145,6 +144,10 @@ body {
   border-radius: 10px;
   height: 100%;
   /* border: solid green; */
+}
+
+.valueVolume{
+  min-width: 25px;
 }
 .duration{
   margin-left: 3%;

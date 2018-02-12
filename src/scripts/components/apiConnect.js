@@ -1,19 +1,41 @@
 const API_KEY_LASTFM = "52bc3b6e84807de0f34482110ffa0834";
 const API_KEY_FMA = "29UT3KA87Q3MV8Q1";
-
+function $$(str) {
+  return document.querySelector(str);
+}
 class ApiConnect {
   constructor() {
     // this.trackUrls = [];
+    this.dom = {
+      player: $$(".player"),
+
+      play: $$(".play"),
+      pause: $$(".pause"),
+
+
+      progress: {
+        bar: $$(".progress"),
+        loaded: $$(".progress_loaded"),
+        current: $$(".progress_current")
+      },
+      duration: $$(".duration"),
+
+      volume: {
+        bar: $$(".volume"),
+        value: $$(".volume__bar"),
+        valueVolume: $$(".valueVolume")
+      },
+      overlay: $$(".overlay")
+    }
   }
 
   init() {
-    this.controls();
     this.connectFMA();
   }
-  dom_elements() { }
-  handlerEvents() {
-    //  var AudioPlayer = ya.music.Audio;
-  }
+  // dom_elements() { }
+  // handlerEvents() {
+  //   //  var AudioPlayer = ya.music.Audio;
+  // }
   connectFMA() {
     fetch(
       `https://freemusicarchive.org/api/get/curators.json?api_key=${API_KEY_FMA}`
@@ -31,52 +53,53 @@ class ApiConnect {
         // document.querySelector('.mainContent').innerHTML += `
         //     <audio controls>
         //         <source src="${dataMM.aTracks[18].track_listen_url}" type="audio/mpeg">
-        //     </audio>
+        //     </audio> .aTracks["0"]
         // `;
-        console.log(dataMM.aTracks[10].track_duration),  //string .aTracks[10].track_duration
-          this.controls(dataMM.aTracks[10].track_listen_url);
+        console.log(dataMM)
+        console.log(dataMM.aTracks[10].track_duration);  //string .aTracks[10].track_duration
+        this.controls(dataMM);
+
       });
   }
 
   controls(dataMM) {
 
-    console.log(dataMM);
+    console.log(dataMM.aTracks[10].track_listen_url);
     //let listenUrl = dataMM.aTracks[10].track_listen_url;
-    let trackUrls = [
-      //"https://freemusicarchive.org/music/listen/df96eb6ea8c16fea1c748e9ea669a06f7cff8918", //10 track
-      //   listenUrl,
-    ];
-    trackUrls.unshift(dataMM);
-    console.log(trackUrls);
+    let trackUrls = dataMM.aTracks.map((track) => {
+      return track.track_listen_url;
+    })
+    // trackUrls.unshift(dataMM.aTracks[10].track_listen_url);
+    console.log('this tral!!!', trackUrls);
 
 
     let trackIndex = 0;
 
-    let dom = {
-      player: document.querySelector(".player"),
+    // let dom = {
+    //   player: document.querySelector(".player"),
 
-      play: document.querySelector(".play"),
-      pause: document.querySelector(".pause"),
+    //   play: document.querySelector(".play"),
+    //   pause: document.querySelector(".pause"),
 
 
-      progress: {
-        bar: document.querySelector(".progress"),
-        loaded: document.querySelector(".progress_loaded"),
-        current: document.querySelector(".progress_current")
-      },
-      duration: document.querySelector(".duration"),
+    //   progress: {
+    //     bar: document.querySelector(".progress"),
+    //     loaded: document.querySelector(".progress_loaded"),
+    //     current: document.querySelector(".progress_current")
+    //   },
+    //   duration: document.querySelector(".duration"),
 
-      volume: {
-        bar: document.querySelector(".volume"),
-        value: document.querySelector(".volume__bar"),
-        valueVolume: document.querySelector(".valueVolume")
-      },
-      overlay: document.querySelector(".overlay")
-    };
+    //   volume: {
+    //     bar: document.querySelector(".volume"),
+    //     value: document.querySelector(".volume__bar"),
+    //     valueVolume: document.querySelector(".valueVolume")
+    //   },
+    //   overlay: document.querySelector(".overlay")
+    // };
 
     let AudioPlayer = ya.music.Audio;
 
-    let audioPlayer = new AudioPlayer(null, dom.overlay);
+    let audioPlayer = new AudioPlayer(null, this.dom.overlay);
 
     var startPlay = function () {
       audioPlayer.play(trackUrls[trackIndex]);
@@ -84,36 +107,39 @@ class ApiConnect {
 
     audioPlayer.on(ya.music.Audio.EVENT_STATE, state => {
       if (state === ya.music.Audio.STATE_PLAYING) {
-        dom.play.innerHTML = "pause_circle_filled";
+        this.dom.play.innerHTML = "pause_circle_filled";
       } else {
-        dom.play.innerHTML = "play_circle_filled";
+        this.dom.play.innerHTML = "play_circle_filled";
       }
     });
 
     audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, timings => {
       console.log(timings);
       if (timings.loaded < 100) {
-        dom.progress.loaded.style.width = timings.loaded + "%";
+        this.dom.progress.loaded.style.width = timings.loaded + "%";
       }
       else {
-        dom.progress.loaded.style.width = "100%";
+        this.dom.progress.loaded.style.width = "100%";
       };
     });
 
-    dom.play.addEventListener("click", function () {
+    this.dom.play.addEventListener("click", function () {
 
       console.log("tutPlay");
       let trackDuration = "3:30";//dataMM.aTracks[10].track_duration; // sec 3:30
       let maxDurationArr = trackDuration.split(":"); //[3,30]
       let maxDurationSec = (maxDurationArr[0] * 60) + +maxDurationArr[1]; //перевод в секунды 210sec (number)
+      let that = this;
 
       function printNumbersTimeout(maxDurationSec) {
+
         var i = 1;
         var timerId = setTimeout(function go() {
           console.log(i);
           if (i < maxDurationSec) setTimeout(go, 1004);
           i++;
-          dom.progress.current.style.width = ((i * 100) / maxDurationSec).toFixed() + "%"; //пропорция
+
+          that.dom.progress.current.style.width = ((i * 100) / maxDurationSec).toFixed() + "%"; //пропорция
         }, 1004);
       }
 
@@ -137,7 +163,7 @@ class ApiConnect {
           startPlay();
           break;
       }
-    });
+    }.bind(this));
 
     audioPlayer.on(ya.music.Audio.EVENT_ENDED, function () {
       trackIndex++;
@@ -146,11 +172,11 @@ class ApiConnect {
         startPlay();
       }
     });
-    // dom.play.addEventListener("click", () => {
-    //   if (dom.play.innerHTML === "play_circle_filled") {
-    //     dom.play.innerHTML = "pause_circle_filled";
-    //   } else if (dom.play.innerHTML === "pause_circle_filled") {
-    //     dom.play.innerHTML = "play_circle_filled";
+    // this.dom.play.addEventListener("click", () => {
+    //   if (this.dom.play.innerHTML === "play_circle_filled") {
+    //     this.dom.play.innerHTML = "pause_circle_filled";
+    //   } else if (this.dom.play.innerHTML === "pause_circle_filled") {
+    //     this.dom.play.innerHTML = "play_circle_filled";
     //   }
     // });
 
@@ -171,9 +197,9 @@ class ApiConnect {
       return offset;
     };
 
-    dom.progress.bar.addEventListener("click", function (evt) {
-      var fullWidth = dom.progress.bar.offsetWidth;
-      var offset = offsetLeft(dom.progress.bar);
+    this.dom.progress.bar.addEventListener("click", function (evt) {
+      var fullWidth = this.dom.progress.bar.offsetWidth;
+      var offset = offsetLeft(this.dom.progress.bar);
 
       var relativePosition = Math.max(
         0,
@@ -184,10 +210,10 @@ class ApiConnect {
       audioPlayer.setPosition(duration * relativePosition);
     });
 
-    dom.volume.bar.addEventListener("change", () => {
-      let volume = dom.volume.bar.value;
+    this.dom.volume.bar.addEventListener('change', () => {
+      let volume = this.dom.volume.bar.value;
 
-      dom.volume.valueVolume.innerHTML = `<span>${volume}</span>`;
+      this.dom.volume.valueVolume.innerHTML = volume;
       let volumeSet = volume / 100; // 0 - mute 1 - bass
       audioPlayer.setVolume(volumeSet);
     });

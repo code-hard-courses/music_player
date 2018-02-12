@@ -1,23 +1,33 @@
 const main = {
-    name: "scroll-tab-2",
-    match: "scroll-tab-2",
+    name: "main",
+    match: "",
     onBeforeEnter: () => { },
     onEnter: () => {
-        let mainContent = document.querySelector(".page-content");
+        let mainContent = document.querySelector(".mainContent");
         mainContent.innerHTML = `
-        <div class="authorIMG">
-        <div class="demo-card-image mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-card--expand"></div>
-                <div class="mdl-card__actions">
-                <span class="demo-card-image__filename">Alex Malv</span>      
+        <div class="listMain">
+        <div class="demo-list-action mdl-list">
+            <div class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                    <div class="material-icons mdl-list__item-avatar">person</div>
+                    <span>Bryan Cranston</span>
+
+                </span>
+                <a class="mdl-list__item-secondary-action" href="#">
+                    <div class="material-icons">play_circle_filled</div>
+                </a>
+            </div>
+            <div class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                    <div class="material-icons mdl-list__item-avatar">person</div>
+                    <span>Aaron Paul</span>
+                </span>
+                <a class="mdl-list__item-secondary-action" href="#">
+                    <div class="material-icons">star</div>
+                </a>
             </div>
         </div>
-        </div>
-        <div class ="authorText">
-        Music is an art form and cultural activity whose medium is sound organized in time. <br>
-        I hope this player will only help you to enjoy the art.
-        </div>
-      `;
+    </div>`;
     },
     onLeave: () => { }
 };

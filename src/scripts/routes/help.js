@@ -3,7 +3,7 @@ const help = { //main help
     match: "help",
     onBeforeEnter: () => { },
     onEnter: () => {
-        let mainContent = document.querySelector(".page-content");
+        let mainContent = document.querySelector(".mainContent");
         mainContent.innerHTML = `
         <div class="helpme">
         <div>

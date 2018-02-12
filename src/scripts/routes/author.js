@@ -3,7 +3,7 @@ const author = {
     match: "author",
     onBeforeEnter: () => { },
     onEnter: () => {
-        let mainContent = document.querySelector(".page-content");
+        let mainContent = document.querySelector(".mainContent");
         mainContent.innerHTML = `
         <div class="authorIMG">
         <div class="demo-card-image mdl-card mdl-shadow--2dp">
