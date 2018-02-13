@@ -43,8 +43,16 @@ a{
   margin: 15px;
   margin-left: auto;
   margin-right: 10%;
+  text-transform: uppercase;
   
 
+}
+.main,
+.songs,
+.albums,
+.artists{
+  padding: 15px;
+  min-width: 15px;
 }
 
 .footercli {
@@ -109,8 +117,10 @@ a{
 
 
 .wrapperProgress{
-  widows: 300px;
+  width: 300px;
+  height: 20px;
   margin-left: 10px;
+  
 }
 .play,
 .pause,
@@ -151,7 +161,8 @@ a{
 }
 .duration{
   margin-left: 3%;
-  margin-right: 8%
+  margin-right: 8%;
+  min-width: 35px;
 }
 .overlay1 {
   display: block;

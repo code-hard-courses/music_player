@@ -75,28 +75,6 @@ class ApiConnect {
 
     let trackIndex = 0;
 
-    // let dom = {
-    //   player: document.querySelector(".player"),
-
-    //   play: document.querySelector(".play"),
-    //   pause: document.querySelector(".pause"),
-
-
-    //   progress: {
-    //     bar: document.querySelector(".progress"),
-    //     loaded: document.querySelector(".progress_loaded"),
-    //     current: document.querySelector(".progress_current")
-    //   },
-    //   duration: document.querySelector(".duration"),
-
-    //   volume: {
-    //     bar: document.querySelector(".volume"),
-    //     value: document.querySelector(".volume__bar"),
-    //     valueVolume: document.querySelector(".valueVolume")
-    //   },
-    //   overlay: document.querySelector(".overlay")
-    // };
-
     let AudioPlayer = ya.music.Audio;
 
     let audioPlayer = new AudioPlayer(null, this.dom.overlay);
@@ -124,9 +102,11 @@ class ApiConnect {
     });
 
     this.dom.play.addEventListener("click", function () {
-
+      console.log("alloblat" + dataMM.aTracks[10].track_duration);
       console.log("tutPlay");
-      let trackDuration = "3:30";//dataMM.aTracks[10].track_duration; // sec 3:30
+
+      let trackDuration = dataMM.aTracks[10].track_duration;//dataMM.aTracks[10].track_duration; // sec 3:30
+      this.dom.duration.innerHTML = trackDuration;
       let maxDurationArr = trackDuration.split(":"); //[3,30]
       let maxDurationSec = (maxDurationArr[0] * 60) + +maxDurationArr[1]; //перевод в секунды 210sec (number)
       let that = this;

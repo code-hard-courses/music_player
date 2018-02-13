@@ -1,10 +1,10 @@
-const main = {
-    name: "main",
-    match: "",
+const artists = {
+    name: "artists",
+    match: "artists",
     onBeforeEnter: () => { },
     onEnter: () => {
         let mainContent = document.querySelector(".mainContent");
-        // let tabMain = document.querySelector('.main');
+        // let tabMain = document.querySelector('.artists');
         // tabMain.style.border = "solid 2px white";
         mainContent.innerHTML = `
         <div class="listMain">
@@ -34,4 +34,4 @@ const main = {
     onLeave: () => { }
 };
 
-export { main };
+export { artists };
