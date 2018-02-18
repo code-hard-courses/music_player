@@ -25,6 +25,8 @@ class ApiConnect {
         value: $$(".volume__bar"),
         valueVolume: $$(".valueVolume")
       },
+
+      radio: $$(".divRadio"),
       overlay: $$(".overlay")
     }
   }
@@ -32,10 +34,7 @@ class ApiConnect {
   init() {
     this.connectFMA();
   }
-  // dom_elements() { }
-  // handlerEvents() {
-  //   //  var AudioPlayer = ya.music.Audio;
-  // }
+
   connectFMA() {
     fetch(
       `https://freemusicarchive.org/api/get/curators.json?api_key=${API_KEY_FMA}`
@@ -43,18 +42,12 @@ class ApiConnect {
       .then(response => response.json())
       .then(data => {
         let main = document.querySelector(".mainContent");
-        // main.innerHTML = `${data.dataset[0]}`;
 
-        //console.log(data.dataset[0]);
       });
     fetch(`https://freemusicarchive.org/recent.json`)
       .then(response => response.json())
       .then(dataMM => {
-        // document.querySelector('.mainContent').innerHTML += `
-        //     <audio controls>
-        //         <source src="${dataMM.aTracks[18].track_listen_url}" type="audio/mpeg">
-        //     </audio> .aTracks["0"]
-        // `;
+
         console.log(dataMM)
         console.log(dataMM.aTracks[10].track_duration);  //string .aTracks[10].track_duration
         this.controls(dataMM);
@@ -72,6 +65,23 @@ class ApiConnect {
     // trackUrls.unshift(dataMM.aTracks[10].track_listen_url);
     console.log('this tral!!!', trackUrls);
 
+    let artistsName = dataMM.aTracks.map((name) => {
+      //debugger;
+      return console.log(name.artist_name);
+
+      let mainContent = document.querySelector(".mainContent");
+      mainContent.innerHTML += `<div class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                    <div class="material-icons mdl-list__item-avatar">person</div>
+                    <span>${name.artist_name}</span>
+                </span>
+                <a class="mdl-list__item-secondary-action" href="#">
+                    <div class="material-icons">play_circle_filled</div>
+                </a>
+                <div class="material-icons">star</div>
+            </div>`;
+    });
+
 
     let trackIndex = 0;
 
@@ -79,9 +89,30 @@ class ApiConnect {
 
     let audioPlayer = new AudioPlayer(null, this.dom.overlay);
 
+    // var startPlay = function () {
+    //   var track = trackUrls[trackIndex];
+    //   if (audioPlayer.isPreloaded(track)) {
+    //     audioPlayer.playPreloaded(track);
+    //   } else {
+    //     audioPlayer.play(track);
+    //   }
+    //   // audioPlayer.play(trackUrls[trackIndex]);
+    // };
     var startPlay = function () {
-      audioPlayer.play(trackUrls[trackIndex]);
+      var track = trackUrls[trackIndex];
+      if (audioPlayer.isPreloaded(track)) {
+        audioPlayer.playPreloaded(track);
+      } else {
+        audioPlayer.play(track);
+
+      }
     };
+
+    audioPlayer.on(ya.music.Audio.EVENT_LOADED, function () {
+      if (trackIndex + 1 < trackUrls.length) {
+        audioPlayer.preload(trackUrls[trackIndex + 1]);
+      }
+    });
 
     audioPlayer.on(ya.music.Audio.EVENT_STATE, state => {
       if (state === ya.music.Audio.STATE_PLAYING) {
@@ -158,8 +189,16 @@ class ApiConnect {
     //   } else if (this.dom.play.innerHTML === "pause_circle_filled") {
     //     this.dom.play.innerHTML = "play_circle_filled";
     //   }
-    // });
-
+    // }); // состояние
+    audioPlayer.on(ya.music.Audio.EVENT_STATE, function (state) {
+      switch (state) {
+        case ya.music.Audio.STATE_INIT: console.log("Инициализация плеера"); break;
+        case ya.music.Audio.STATE_IDLE: console.log("Плеер готов и ожидает"); break;
+        case ya.music.Audio.STATE_PLAYING: console.log("Плеер проигрывает музыку"); break;
+        case ya.music.Audio.STATE_PAUSED: console.log("Плеер поставлен на паузу"); break;
+        case ya.music.Audio.STATE_CRASHED: console.log("Не удалось инициализировать плеер"); break;
+      }
+    });
     // need some think about it:
     var offsetLeft = function (node) {
       var offset = node.offsetLeft;
@@ -194,7 +233,7 @@ class ApiConnect {
       let volume = this.dom.volume.bar.value;
 
       this.dom.volume.valueVolume.innerHTML = volume;
-      let volumeSet = volume / 100; // 0 - mute 1 - bass
+      let volumeSet = volume / 100;
       audioPlayer.setVolume(volumeSet);
     });
 

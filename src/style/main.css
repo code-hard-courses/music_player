@@ -1,5 +1,4 @@
 body {
-  /* background: #234124; rgba(0,0,0,.87) rgb(44, 42, 42)*/
   background: slategrey;
   background: linear-gradient(to bottom, #fefcea, #424242);
 }
@@ -38,7 +37,6 @@ a{
 }
 .tabs {
   display: flex;
-  width: 30%;
   justify-content: space-between;
   margin: 15px;
   margin-left: auto;

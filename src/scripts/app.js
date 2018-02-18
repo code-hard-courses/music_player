@@ -6,8 +6,8 @@ import { albums } from "./routes/albums.js";
 import { artists } from "./routes/artists.js";
 import { author } from './routes/author.js';
 import { help } from './routes/help.js';
+import { Themes } from "./components/themes.js";
 
-import { apiConnect } from './components/apiConnect.js'
 
 
 let routes = [author, help, main, songs, albums, artists];
