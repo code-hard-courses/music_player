@@ -8,8 +8,6 @@ import { author } from './routes/author.js';
 import { help } from './routes/help.js';
 import { Themes } from "./components/themes.js";
 
-
-
 let routes = [author, help, main, songs, albums, artists];
 
 new Router({ routes }).init()
