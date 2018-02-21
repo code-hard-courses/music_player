@@ -32,26 +32,27 @@ class ApiConnect {
   }
 
   init() {
-    this.connectFMA();
+    let dataMM = JSON.parse(localStorage.getItem('dataMM')) || this.connectFMA();
+    this.controls(dataMM);
   }
 
   connectFMA() {
-    fetch(
-      `https://freemusicarchive.org/api/get/curators.json?api_key=${API_KEY_FMA}`
-    )
-      .then(response => response.json())
-      .then(data => {
-        let main = document.querySelector(".mainContent");
+    // fetch(
+    //   `https://freemusicarchive.org/api/get/curators.json?api_key=${API_KEY_FMA}`
+    // )
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     let main = document.querySelector(".mainContent");
 
-      });
+    //   });
     fetch(`https://freemusicarchive.org/recent.json`)
       .then(response => response.json())
       .then(dataMM => {
 
-        console.log(dataMM)
-        console.log(dataMM.aTracks[10].track_duration);  //string .aTracks[10].track_duration
-        this.controls(dataMM);
-
+        // console.log(dataMM)
+        // console.log(dataMM.aTracks[10].track_duration);
+        localStorage.setItem('dataMM', JSON.stringify(dataMM));
+        return dataMM;
       });
   }
 
@@ -63,23 +64,27 @@ class ApiConnect {
       return track.track_listen_url;
     })
     // trackUrls.unshift(dataMM.aTracks[10].track_listen_url);
-    console.log('this tral!!!', trackUrls);
+    // console.log('this tral!!!', trackUrls);
 
     let artistsName = dataMM.aTracks.map((name) => {
-      //debugger;
-      return console.log(name.artist_name);
+
 
       let mainContent = document.querySelector(".mainContent");
-      mainContent.innerHTML += `<div class="mdl-list__item">
+
+      let column = document.querySelector(".column_count");
+      mainContent.innerHTML += `
+      <div class="listMain">
+        <div class="demo-list-action mdl-list">
+            <div class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
                     <div class="material-icons mdl-list__item-avatar">person</div>
-                    <span>${name.artist_name}</span>
+                    <span>${name.artist_name} </span><span class="mdl-list__item-secondary-content"><span> ${name.track_duration} </span></span>
                 </span>
-                <a class="mdl-list__item-secondary-action" href="#">
-                    <div class="material-icons">play_circle_filled</div>
-                </a>
+                <div class="material-icons play">play_circle_filled</div>
                 <div class="material-icons">star</div>
-            </div>`;
+            </div>
+        </div>
+    </div>`;
     });
 
 
@@ -133,7 +138,6 @@ class ApiConnect {
     });
 
     this.dom.play.addEventListener("click", function () {
-      console.log("alloblat" + dataMM.aTracks[10].track_duration);
       console.log("tutPlay");
 
       let trackDuration = dataMM.aTracks[10].track_duration;//dataMM.aTracks[10].track_duration; // sec 3:30
@@ -240,8 +244,4 @@ class ApiConnect {
 
   }
 }
-
-let connect = new ApiConnect();
-connect.init();
-
 export { ApiConnect };

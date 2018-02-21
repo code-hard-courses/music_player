@@ -46,7 +46,6 @@ class Themes {
 
     stateCheck() {
         let retObj = JSON.parse(localStorage.getItem("objectTheme"));
-        console.log("ha " + retObj);
         if (retObj === "blackWhite") {
             this.radio[1].checked = true;
             this.header.style.background = "black";

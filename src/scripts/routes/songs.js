@@ -1,37 +1,18 @@
+import Songs from '../components/Songs'
+let mainContent = document.querySelector(".mainContent");
 const songs = {
     name: "songs",
     match: "songs",
     onBeforeEnter: () => { },
     onEnter: () => {
-        let mainContent = document.querySelector(".mainContent");
-        // let tabMain = document.querySelector('.songs');
-        // tabMain.style.border = "solid 2px white";
-        mainContent.innerHTML = `
-        <div class="listMain">
-        <div class="demo-list-action mdl-list">
-            <div class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                    <div class="material-icons mdl-list__item-avatar">person</div>
-                    <span>Bryan Cranston</span>
+        // let column = document.querySelector(".column_count");
+        // column.classList.remove("column_count");
 
-                </span>
-                <a class="mdl-list__item-secondary-action" href="#">
-                    <div class="material-icons">play_circle_filled</div>
-                </a>
-            </div>
-            <div class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                    <div class="material-icons mdl-list__item-avatar">person</div>
-                    <span>Aaron Paul</span>
-                </span>
-                <a class="mdl-list__item-secondary-action" href="#">
-                    <div class="material-icons">star</div>
-                </a>
-            </div>
-        </div>
-    </div>`;
+        new Songs().init();
     },
-    onLeave: () => { }
+    onLeave: () => {
+        mainContent.innerHTML = '';
+    }
 };
 
 export { songs };

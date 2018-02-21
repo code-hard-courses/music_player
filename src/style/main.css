@@ -29,6 +29,10 @@ body {
 
 .mainContent {
   margin: 1%;
+  /* column-count: 2; */
+}
+.column_count{
+  column-count: 2;
 }
 
 a{
@@ -76,6 +80,12 @@ a{
 .demo-card-image.mdl-card {
   width: 256px;
   height: 256px;
+  background: url("../img/29539529.jpg") center / cover;
+}
+
+.demo-card-image.mdl-card.artists_card {
+  width: 200px;
+  height: 200px;
   background: url("../img/29539529.jpg") center / cover;
 }
 
