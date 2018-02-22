@@ -1,17 +1,19 @@
 import Songs from '../components/Songs'
 let mainContent = document.querySelector(".mainContent");
+let songss = document.querySelector(".songsTab");
 const songs = {
     name: "songs",
     match: "songs",
-    onBeforeEnter: () => { },
+    onBeforeEnter: () => {
+        songss.style.borderBottom = "solid yellow";
+    },
     onEnter: () => {
-        // let column = document.querySelector(".column_count");
-        // column.classList.remove("column_count");
 
         new Songs().init();
     },
     onLeave: () => {
         mainContent.innerHTML = '';
+        songss.style.borderBottom = '';
     }
 };
 

@@ -21,7 +21,8 @@ class Songs {
                           <span> ${name.track_title} </span>
                       </span>
                       <div class="material-icons mainPlay" data-index="${i}">play_circle_filled</div>
-                      <div class="material-icons">star</div>
+                      <div class="material-icons star">star</div>
+                      <a href="${name.track_file_url}"><div class="material-icons">file_download</div></a>
                   </div>
               </div>
           </div>`;

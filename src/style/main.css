@@ -30,7 +30,13 @@ body {
 .mainContent {
   margin: 1%;
 }
-
+.star{
+  color: yellow;
+  cursor: pointer;
+}
+.mainPlay{
+  cursor: pointer;
+}
 .listMusic{
   column-count: 2;
   

@@ -70,8 +70,7 @@ class ApiConnect {
 
 
       let mainContent = document.querySelector(".mainContent");
-
-      let column = document.querySelector(".column_count");
+      mainContent.innerHTML += '<div class="listMusic"></div>'
       mainContent.innerHTML += `
       <div class="listMain">
         <div class="demo-list-action mdl-list">
@@ -80,8 +79,8 @@ class ApiConnect {
                     <div class="material-icons mdl-list__item-avatar">person</div>
                     <span>${name.artist_name} </span><span class="mdl-list__item-secondary-content"><span> ${name.track_duration} </span></span>
                 </span>
-                <div class="material-icons play">play_circle_filled</div>
-                <div class="material-icons">star</div>
+                <div class="material-icons mainPlay">play_circle_filled</div>
+                <div class="material-icons star">star</div>
             </div>
         </div>
     </div>`;

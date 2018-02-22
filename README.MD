@@ -16,6 +16,14 @@ npm install
 gulp
 ```
 
-### logo
+## Start page
+
+## logo
 
 ![mila](./src/img/MilaLogoWhite.PNG)
+
+## App structure
+
+## Technologies and tools
+
+## App info
