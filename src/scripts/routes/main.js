@@ -1,6 +1,6 @@
 import { ApiConnect } from '../components/apiConnect.js';
 let mainContent = document.querySelector(".mainContent");
-let maincho = document.querySelector(".mainCho");
+let maincho = document.querySelector(".main");
 
 
 

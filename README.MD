@@ -14,16 +14,29 @@ npm install
 
 # run app
 gulp
+
+```
+
+## Deploy script
+
+```bash
+npm run build:deploy
+
 ```
 
 ## Start page
 
-## logo
-
-![mila](./src/img/MilaLogoWhite.PNG)
+![start](./src/img/startpage.PNG)
 
 ## App structure
 
 ## Technologies and tools
 
+- [MDL](https://getmdl.io)
+- [FMA free music](http://freemusicarchive.org)
+- [yandex music api](https://tech.yandex.ru/audio/jsapi/)
+
 ## App info
+
+- [Presentation](http://slides.com/alex_malv/deck/fullscreen)
+- [Deploy](https://ozzymalv.github.io/music_player/)

@@ -18,10 +18,11 @@ class Songs {
                   <div class="mdl-list__item">
                       <span class="mdl-list__item-primary-content">
                           <div class="material-icons mdl-list__item-avatar">person</div>
-                          <span> ${name.track_title} </span>
+                          
+                          <span> ${name.track_title} </span> <span> ${name.track_duration} </span>
                       </span>
                       <div class="material-icons mainPlay" data-index="${i}">play_circle_filled</div>
-                      <div class="material-icons star">star</div>
+                      
                       <a href="${name.track_file_url}"><div class="material-icons">file_download</div></a>
                   </div>
               </div>
@@ -36,3 +37,6 @@ class Songs {
 }
 
 export default Songs;
+
+{/* <div class="material-icons star">star</div> */ }
+{/* <span><div class="trackImage"><img alt="" src=${name.track_image_file} width="25" height="25"></div></span> */ }

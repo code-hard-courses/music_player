@@ -1,15 +1,15 @@
-import Songs from '../components/Songs'
+import Favorites from '../components/Favorites'
 let mainContent = document.querySelector(".mainContent");
-let songss = document.querySelector(".songs");
-const songs = {
-    name: "songs",
-    match: "songs",
+let songss = document.querySelector(".favorites");
+
+const favorites = {
+    name: "favorites",
+    match: "favorites",
     onBeforeEnter: () => {
         songss.style.borderBottom = "solid yellow";
     },
     onEnter: () => {
-
-        new Songs().init();
+        new Favorites().init();
     },
     onLeave: () => {
         mainContent.innerHTML = '';
@@ -17,4 +17,4 @@ const songs = {
     }
 };
 
-export { songs };
+export { favorites };

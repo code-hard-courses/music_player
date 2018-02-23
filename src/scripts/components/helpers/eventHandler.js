@@ -7,6 +7,8 @@ let dom = {
   play: $$(".play"),
   pause: $$(".pause"),
 
+  mainPlay: $$(".mainPlay"),
+
 
   progress: {
     bar: $$(".progress"),
@@ -27,9 +29,14 @@ let dom = {
 
 export default function (dataMM, ev) {
   console.log("tutPlay");
-  console.log('jkfhslkjhflkjdsa', dataMM, ev);
+  console.log(' ', dataMM, ev);
 
-  let indexMusic = ev.target.dataset.index;
+  let indexMusic = ev.target.dataset.index; //индекс трека
+
+  if (!indexMusic) {
+    console.log(indexMusic);
+    indexMusic = 0;
+  };
 
   let trackDuration = dataMM.aTracks[indexMusic].track_duration;//dataMM.aTracks[10].track_duration; // sec 3:30
   dom.duration.innerHTML = trackDuration;
@@ -56,6 +63,43 @@ export default function (dataMM, ev) {
   let audioPlayer = new AudioPlayer(null, dom.overlay);
   let state = audioPlayer.getState();
 
+  function startPlay() {
+    let tracks = JSON.parse(localStorage.getItem('dataMM'));
+    console.log(tracks);
+    var track = tracks.aTracks[indexMusic].track_listen_url;
+    if (audioPlayer.isPreloaded(track)) {
+      audioPlayer.playPreloaded(track);
+    } else {
+      audioPlayer.play(track);
+
+    }
+  };
+
+  audioPlayer.on(ya.music.Audio.EVENT_PROGRESS, timings => {
+    console.log(timings);
+    if (timings.loaded < 100) {
+      dom.progress.loaded.style.width = timings.loaded + "%";
+    }
+    else {
+      dom.progress.loaded.style.width = "100%";
+    };
+  });
+
+  audioPlayer.on(ya.music.Audio.EVENT_STATE, state => {
+    if (state === ya.music.Audio.STATE_PLAYING) {
+      dom.play.innerHTML = "pause_circle_filled";
+    } else {
+      dom.play.innerHTML = "play_circle_filled";
+    }
+  });
+
+  // if (ya.music.Audio.STATE_PLAYING) {
+  //   console.log("stop");
+  //   audioPlayer.stop();
+  // }
+
+
+
   switch (state) {
     case ya.music.Audio.STATE_PLAYING:
       audioPlayer.pause();
@@ -68,20 +112,27 @@ export default function (dataMM, ev) {
       break;
 
     default:
-
+      console.log("pause2");
+      audioPlayer.pause();
       startPlay();
       break;
   };
 
-  function startPlay() {
-    let tracks = JSON.parse(localStorage.getItem('dataMM'));
-    console.log(tracks);
-    var track = tracks.aTracks[indexMusic].track_listen_url;
-    if (audioPlayer.isPreloaded(track)) {
-      audioPlayer.playPreloaded(track);
-    } else {
-      audioPlayer.play(track);
 
-    }
-  };
+
+
+  dom.volume.bar.addEventListener('change', () => {
+    let volume = dom.volume.bar.value;
+
+    dom.volume.valueVolume.innerHTML = volume;
+    let volumeSet = volume / 100;
+    audioPlayer.setVolume(volumeSet);
+  });
+
+  //debugger;
+  if (ev.target.innerHTML !== 'pause_circle_filled') {
+    ev.target.innerHTML = 'pause_circle_filled';
+  } else {
+    ev.target.innerHTML = 'play_circle_filled';
+  }
 }

@@ -1,6 +1,6 @@
 import Albums from '../components/Albums'
 let mainContent = document.querySelector(".mainContent");
-let albumss = document.querySelector(".albumsTab");
+let albumss = document.querySelector(".albums");
 
 const albums = {
     name: "albums",

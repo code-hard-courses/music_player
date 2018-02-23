@@ -8,10 +8,10 @@ class EventHandler {
     this.play.addEventListener("click", function () {
       console.log("tutPlay");
 
-      let trackDuration = dataMM.aTracks[10].track_duration;//dataMM.aTracks[10].track_duration; // sec 3:30
+      let trackDuration = dataMM.aTracks[10].track_duration;
       this.dom.duration.innerHTML = trackDuration;
-      let maxDurationArr = trackDuration.split(":"); //[3,30]
-      let maxDurationSec = (maxDurationArr[0] * 60) + +maxDurationArr[1]; //перевод в секунды 210sec (number)
+      let maxDurationArr = trackDuration.split(":");
+      let maxDurationSec = (maxDurationArr[0] * 60) + +maxDurationArr[1];
       let that = this;
 
       function printNumbersTimeout(maxDurationSec) {
@@ -22,7 +22,7 @@ class EventHandler {
           if (i < maxDurationSec) setTimeout(go, 1004);
           i++;
 
-          that.dom.progress.current.style.width = ((i * 100) / maxDurationSec).toFixed() + "%"; //пропорция
+          that.dom.progress.current.style.width = ((i * 100) / maxDurationSec).toFixed() + "%";
         }, 1004);
       }
 

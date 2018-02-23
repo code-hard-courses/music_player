@@ -12,6 +12,10 @@ class Albums {
         mainContent.innerHTML += '<div class="listMusic"></div>'
         let listMusic = document.querySelector(".listMusic");
         let artistsName = dataMM.aTracks.map((name, i) => {
+            if (name.album_title === null) {
+                name.album_title = "No records";
+            }
+
             listMusic.innerHTML += `
             <div class="listMain">
               <div class="demo-list-action mdl-list">
@@ -21,7 +25,6 @@ class Albums {
                           <span> ${name.album_title} </span>
                       </span>
                       <div class="material-icons mainPlay" data-index="${i}">play_circle_filled</div>
-                      <div class="material-icons star">star</div>
                       <a href="${name.track_file_url}"><div class="material-icons">file_download</div></a>
                   </div>
               </div>
